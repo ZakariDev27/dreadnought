@@ -1,7 +1,7 @@
 import json
 
-from blackcanary.cli import EXIT_ERROR, EXIT_HEALTHY, EXIT_INCONCLUSIVE, EXIT_UNHEALTHY, main
-from blackcanary.simulate import cohort, to_jsonl
+from dreadnought.cli import EXIT_ERROR, EXIT_HEALTHY, EXIT_INCONCLUSIVE, EXIT_UNHEALTHY, main
+from dreadnought.simulate import cohort, to_jsonl
 
 
 def write(tmp_path, *, treated_failure, treated=60):
@@ -45,10 +45,10 @@ def test_missing_file_is_an_error_not_a_verdict(tmp_path, capsys):
 
 
 def test_post_without_a_key_fails_closed(tmp_path, monkeypatch, capsys):
-    monkeypatch.delenv("BLACKCANARY_API_KEY", raising=False)
+    monkeypatch.delenv("DREADNOUGHT_API_KEY", raising=False)
     path = write(tmp_path, treated_failure=0.02)
 
     code = main(["gate", path, "--rollout", "r", "--ring", "canary", "--post", "http://127.0.0.1:9"])
 
     assert code == EXIT_ERROR
-    assert "BLACKCANARY_API_KEY" in capsys.readouterr().err
+    assert "DREADNOUGHT_API_KEY" in capsys.readouterr().err

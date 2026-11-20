@@ -1,4 +1,4 @@
-Black Canary — fleet configuration as code, with rollouts that have to earn their way
+Dreadnought — fleet configuration as code, with rollouts that have to earn their way
 
 ━━ 1. Devices check in; drift is scored against config-as-code ━━━━━━━
   ▸ 24 macOS devices reported their settings
@@ -28,7 +28,7 @@ Black Canary — fleet configuration as code, with rollouts that have to earn th
   ▸ started in ring 'canary' (5% of fleet)
     ✗ advance with no evidence: Ring 'canary' has no healthy verdict yet.
     ✓ gate: healthy (n=80)
-    ✗ advance immediately: Ring 'canary' must soak for 00:00:03; only 00:00:00.0202633 has elapsed.
+    ✗ advance immediately: Ring 'canary' must soak for 00:00:03; only 00:00:00.0215227 has elapsed.
     ✓ advanced → ring 'broad'
     ✓ gate: healthy (n=80)
     ✓ advanced → ring 'fleet'
@@ -46,21 +46,21 @@ Black Canary — fleet configuration as code, with rollouts that have to earn th
     ✗ ada tries to push on anyway: Cannot advance a rollout that is RolledBack.
 
 ━━ 5. Every action is on a tamper-evident record ━━━━━━━━━━━━━━━━━━━━━
-     1  e3d68af647  ada           rollout.created      r-macos-core-3     macos-core@3; sensitive=True; approvals requ
-     2  1ca5c3e6d9  grace         rollout.approved     r-macos-core-3     1/2 approvals
-     3  32d7ad90b9  linus         rollout.approved     r-macos-core-3     2/2 approvals
-     4  03129f40aa  ada           rollout.started      r-macos-core-3     ring=canary
-     5  fc831e51d2  analytics     rollout.verdict      r-macos-core-3     ring=canary; status=Healthy; n=80
-     6  65267f2a03  ada           rollout.advanced     r-macos-core-3     ring=broad
-     7  dd79329646  analytics     rollout.verdict      r-macos-core-3     ring=broad; status=Healthy; n=80
-     8  4026209245  ada           rollout.advanced     r-macos-core-3     ring=fleet
-     9  a33da52d4e  analytics     rollout.verdict      r-macos-core-3     ring=fleet; status=Healthy; n=80
-    10  a8af5b110e  ada           rollout.advanced     r-macos-core-3     completed
-    11  b5b2fd202f  ada           rollout.created      r-macos-browser-1  macos-browser@1; sensitive=False; approvals 
-    12  81042b8220  grace         rollout.approved     r-macos-browser-1  1/1 approvals
-    13  19ffe9b4a2  ada           rollout.started      r-macos-browser-1  ring=canary
-    14  27bbbaa516  analytics     rollout.verdict      r-macos-browser-1  ring=canary; status=Unhealthy; n=80
-    15  2c7f07f7e4  black-canary  rollout.rolled_back  r-macos-browser-1  Health gate failed in 'canary': failure rate
+     1  a71651b873  ada           rollout.created      r-macos-core-3     macos-core@3; sensitive=True; approvals requ
+     2  dab99e0d7e  grace         rollout.approved     r-macos-core-3     1/2 approvals
+     3  c84ec2f625  linus         rollout.approved     r-macos-core-3     2/2 approvals
+     4  64707a6bf1  ada           rollout.started      r-macos-core-3     ring=canary
+     5  7242032ff9  analytics     rollout.verdict      r-macos-core-3     ring=canary; status=Healthy; n=80
+     6  99c12a5460  ada           rollout.advanced     r-macos-core-3     ring=broad
+     7  3a1eb1b690  analytics     rollout.verdict      r-macos-core-3     ring=broad; status=Healthy; n=80
+     8  67a497ab75  ada           rollout.advanced     r-macos-core-3     ring=fleet
+     9  6b373e159e  analytics     rollout.verdict      r-macos-core-3     ring=fleet; status=Healthy; n=80
+    10  70267af2c4  ada           rollout.advanced     r-macos-core-3     completed
+    11  e77ed61612  ada           rollout.created      r-macos-browser-1  macos-browser@1; sensitive=False; approvals 
+    12  0cf9ee3f7d  grace         rollout.approved     r-macos-browser-1  1/1 approvals
+    13  01915ccd34  ada           rollout.started      r-macos-browser-1  ring=canary
+    14  1677c4d37d  analytics     rollout.verdict      r-macos-browser-1  ring=canary; status=Unhealthy; n=80
+    15  65d873223c  dreadnought   rollout.rolled_back  r-macos-browser-1  Health gate failed in 'canary': failure rate
     ✓ hash chain verified across 15 entries
 
 Demo complete. Every step above was asserted.

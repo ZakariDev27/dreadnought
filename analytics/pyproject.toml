@@ -3,9 +3,9 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "blackcanary-analytics"
+name = "dreadnought-analytics"
 version = "0.1.0"
-description = "Fleet telemetry analysis, rollout health gates and guarded remediation for Black Canary"
+description = "Fleet telemetry analysis, rollout health gates and guarded remediation for Dreadnought"
 requires-python = ">=3.11"
 license = { text = "MIT" }
 dependencies = []
@@ -14,7 +14,7 @@ dependencies = []
 dev = ["pytest>=8", "ruff>=0.6", "mypy>=1.11"]
 
 [project.scripts]
-blackcanary-analytics = "blackcanary.cli:main"
+dreadnought-analytics = "dreadnought.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

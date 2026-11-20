@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <AssemblyName>dreadnought</AssemblyName>
+    <RootNamespace>Dreadnought.Cli</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Dreadnought.Core/Dreadnought.Core.csproj" />
+  </ItemGroup>
+</Project>

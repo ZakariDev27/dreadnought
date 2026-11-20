@@ -11,8 +11,8 @@ lint:
 	cd analytics && ruff check . && ruff format --check . && mypy
 
 validate:
-	dotnet run --project src/BlackCanary.Cli -- validate fleet
-	dotnet run --project src/BlackCanary.Cli -- validate demo/fleet
+	dotnet run --project src/Dreadnought.Cli -- validate fleet
+	dotnet run --project src/Dreadnought.Cli -- validate demo/fleet
 
 demo:
 	python demo/run.py

@@ -3,7 +3,7 @@
 ## Lifecycle of a change
 
 1. **Author** edits a file under `fleet/baselines/` and bumps its `version`. The pull request
-   runs `blackcanary validate`, which fails on rule violations (see below) before a human looks.
+   runs `dreadnought validate`, which fails on rule violations (see below) before a human looks.
 2. **Merge** makes the new version available to the control plane.
 3. **Rollout** is opened with `POST /v1/rollouts`. The control plane looks the baseline up,
    derives whether it is sensitive, and puts it in `awaitingApproval`.

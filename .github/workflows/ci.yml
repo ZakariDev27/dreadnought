@@ -26,8 +26,8 @@ jobs:
       # The same gate a pull request against fleet/ has to pass.
       - name: Validate fleet configuration
         run: |
-          dotnet run -c Release --no-build --project src/BlackCanary.Cli -- validate fleet
-          dotnet run -c Release --no-build --project src/BlackCanary.Cli -- validate demo/fleet
+          dotnet run -c Release --no-build --project src/Dreadnought.Cli -- validate fleet
+          dotnet run -c Release --no-build --project src/Dreadnought.Cli -- validate demo/fleet
 
   analytics:
     name: Python lint, types, test
@@ -58,5 +58,5 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: dotnet build src/BlackCanary.ControlPlane
+      - run: dotnet build src/Dreadnought.ControlPlane
       - run: python demo/run.py

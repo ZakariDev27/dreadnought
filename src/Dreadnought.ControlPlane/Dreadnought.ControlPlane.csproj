@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <RootNamespace>Dreadnought.ControlPlane</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Dreadnought.Core/Dreadnought.Core.csproj" />
+  </ItemGroup>
+</Project>

@@ -2,8 +2,8 @@ import json
 
 import pytest
 
-from blackcanary.simulate import cohort, to_jsonl
-from blackcanary.telemetry import TelemetryError, read_jsonl, summarise
+from dreadnought.simulate import cohort, to_jsonl
+from dreadnought.telemetry import TelemetryError, read_jsonl, summarise
 
 
 def test_jsonl_round_trip(tmp_path):

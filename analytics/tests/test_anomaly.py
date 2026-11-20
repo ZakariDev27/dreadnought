@@ -1,6 +1,6 @@
 import pytest
 
-from blackcanary.anomaly import ewma_breaches, fleet_outliers
+from dreadnought.anomaly import ewma_breaches, fleet_outliers
 
 
 def test_fleet_outliers_finds_the_slow_machines_worst_first():

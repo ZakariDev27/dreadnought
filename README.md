@@ -1,10 +1,10 @@
-# Black Canary
+# Dreadnought
 
-[![ci](https://github.com/ZakariDev27/black-canary/actions/workflows/ci.yml/badge.svg)](https://github.com/ZakariDev27/black-canary/actions/workflows/ci.yml)
+[![ci](https://github.com/ZakariDev27/dreadnought/actions/workflows/ci.yml/badge.svg)](https://github.com/ZakariDev27/dreadnought/actions/workflows/ci.yml)
 
 Fleet configuration as code, with rollouts that have to earn their way across the fleet.
 
-Black Canary manages the desired state of a mixed macOS / Windows / Linux device fleet from a
+Dreadnought manages the desired state of a mixed macOS / Windows / Linux device fleet from a
 git repository. A change is a reviewed pull request; it reaches devices ring by ring; each ring
 has to prove itself healthy against a holdback group before the next one opens; and a ring that
 goes bad rolls the change back without waiting for a human.
@@ -57,7 +57,7 @@ same script is the end-to-end test in CI. The middle of the run ([full transcrip
 
 ```mermaid
 flowchart LR
-    git[("fleet/ in git<br/>baselines + rings")] -->|PR: blackcanary validate| cp
+    git[("fleet/ in git<br/>baselines + rings")] -->|PR: dreadnought validate| cp
     subgraph cp["Control plane (C#)"]
         drift[Drift detector]
         sm[Rollout state machine]
@@ -77,10 +77,10 @@ flowchart LR
 
 | Path | What lives there |
 | --- | --- |
-| `src/BlackCanary.Core` | Domain: baselines, validation rules, drift scoring, ring assignment, rollout state machine, audit chain. No I/O beyond reading the fleet directory. |
-| `src/BlackCanary.ControlPlane` | ASP.NET Core minimal API over the domain, with per-key scopes. |
-| `src/BlackCanary.Cli` | `blackcanary validate / rings / drift` — the CI gate for config changes. |
-| `analytics/` | `blackcanary` Python package: `stats`, `gate`, `anomaly`, `remediation`, HTTP client, CLI. Standard library only at runtime. |
+| `src/Dreadnought.Core` | Domain: baselines, validation rules, drift scoring, ring assignment, rollout state machine, audit chain. No I/O beyond reading the fleet directory. |
+| `src/Dreadnought.ControlPlane` | ASP.NET Core minimal API over the domain, with per-key scopes. |
+| `src/Dreadnought.Cli` | `dreadnought validate / rings / drift` — the CI gate for config changes. |
+| `analytics/` | `dreadnought` Python package: `stats`, `gate`, `anomaly`, `remediation`, HTTP client, CLI. Standard library only at runtime. |
 | `fleet/` | The config-as-code itself: one JSON file per baseline, plus `rings.json`. |
 | `contracts/` | Example documents that cross the language boundary; both test suites load them. |
 | `demo/` | The guided demo and its fast-soak fleet. |
@@ -135,7 +135,7 @@ make demo              # the guided run above
 Run the control plane on its own and talk to it:
 
 ```bash
-dotnet run --project src/BlackCanary.ControlPlane --launch-profile http
+dotnet run --project src/Dreadnought.ControlPlane --launch-profile http
 
 curl -X PUT localhost:5080/v1/devices/mac-001 \
   -H 'X-Api-Key: dev-agent' -H 'Content-Type: application/json' \
@@ -149,7 +149,7 @@ Judge a ring from a telemetry file and submit the verdict:
 
 ```bash
 pip install -e analytics
-BLACKCANARY_API_KEY=dev-analytics blackcanary-analytics gate telemetry.jsonl \
+DREADNOUGHT_API_KEY=dev-analytics dreadnought-analytics gate telemetry.jsonl \
   --rollout r-macos-core-3 --ring canary --post http://localhost:5080
 ```
 

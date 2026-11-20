@@ -2,9 +2,9 @@ from datetime import UTC, datetime
 
 import pytest
 
-from blackcanary.gate import GatePolicy, evaluate_ring
-from blackcanary.simulate import cohort
-from blackcanary.telemetry import DeviceHealth, summarise
+from dreadnought.gate import GatePolicy, evaluate_ring
+from dreadnought.simulate import cohort
+from dreadnought.telemetry import DeviceHealth, summarise
 
 NOW = datetime(2026, 11, 20, 16, 0, tzinfo=UTC)
 

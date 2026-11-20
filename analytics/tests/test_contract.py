@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pytest
 
-from blackcanary.gate import Verdict
+from dreadnought.gate import Verdict
 
 EXAMPLE = json.loads((Path(__file__).parents[2] / "contracts" / "verdict.example.json").read_text())
 

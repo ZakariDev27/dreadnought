@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Guided end-to-end demo of Black Canary.
+"""Guided end-to-end demo of Dreadnought.
 
 Starts the C# control plane against ``demo/fleet`` and drives it with the Python
 analytics package: devices check in and drift is scored, a guarded remediation
@@ -26,11 +26,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "analytics" / "src"))
 
-from blackcanary.client import ControlPlaneClient, ControlPlaneError  # noqa: E402
-from blackcanary.gate import evaluate_ring  # noqa: E402
-from blackcanary.remediation import Executor, Finding, Guard, RulePlanner, Tool, plan  # noqa: E402
-from blackcanary.simulate import cohort  # noqa: E402
-from blackcanary.telemetry import summarise  # noqa: E402
+from dreadnought.client import ControlPlaneClient, ControlPlaneError  # noqa: E402
+from dreadnought.gate import evaluate_ring  # noqa: E402
+from dreadnought.remediation import Executor, Finding, Guard, RulePlanner, Tool, plan  # noqa: E402
+from dreadnought.simulate import cohort  # noqa: E402
+from dreadnought.telemetry import summarise  # noqa: E402
 
 COLOUR = sys.stdout.isatty() and "NO_COLOR" not in os.environ
 
@@ -77,11 +77,11 @@ def start_control_plane(port: int) -> subprocess.Popen[bytes]:
     env = os.environ | {
         "ASPNETCORE_ENVIRONMENT": "Development",  # loads the non-secret dev API keys
         "ASPNETCORE_URLS": f"http://127.0.0.1:{port}",
-        "BlackCanary__FleetPath": str(ROOT / "demo" / "fleet"),
+        "Dreadnought__FleetPath": str(ROOT / "demo" / "fleet"),
         "Logging__LogLevel__Default": "Warning",
     }
     return subprocess.Popen(
-        ["dotnet", "run", "--no-launch-profile", "--project", str(ROOT / "src" / "BlackCanary.ControlPlane")],
+        ["dotnet", "run", "--no-launch-profile", "--project", str(ROOT / "src" / "Dreadnought.ControlPlane")],
         env=env,
         stdout=subprocess.DEVNULL,
         stderr=subprocess.PIPE,
@@ -272,7 +272,7 @@ def main() -> int:
     process = None if args.url else start_control_plane(args.port)
     url = args.url or f"http://127.0.0.1:{args.port}"
     try:
-        print(paint("1", "Black Canary") + " — fleet configuration as code, with rollouts that have to earn their way")
+        print(paint("1", "Dreadnought") + " — fleet configuration as code, with rollouts that have to earn their way")
         wait_until_healthy(url, process)
 
         author = ControlPlaneClient(url, "dev-author")

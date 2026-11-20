@@ -6,4 +6,4 @@ one language fails the build in the other.
 
 | File | Producer | Consumer |
 | --- | --- | --- |
-| `verdict.example.json` | `blackcanary.gate` | `POST /v1/rollouts/{id}/verdicts` |
+| `verdict.example.json` | `dreadnought.gate` | `POST /v1/rollouts/{id}/verdicts` |

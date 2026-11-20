@@ -1,4 +1,4 @@
-from blackcanary.remediation import (
+from dreadnought.remediation import (
     Decision,
     Executor,
     Finding,

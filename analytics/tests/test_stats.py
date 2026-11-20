@@ -2,7 +2,7 @@ import math
 
 import pytest
 
-from blackcanary.stats import (
+from dreadnought.stats import (
     ewma,
     mann_whitney_greater,
     normal_sf,
