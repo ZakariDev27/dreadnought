@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{04F2622D-1371-4136-91C4-265898C56D34}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackCanary.Core", "src\BlackCanary.Core\BlackCanary.Core.csproj", "{BB15AFFD-B4DB-4545-9BCF-52D45F3E0DC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackCanary.ControlPlane", "src\BlackCanary.ControlPlane\BlackCanary.ControlPlane.csproj", "{A5E03C81-972F-4FA1-9123-DC612C85AE0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackCanary.Cli", "src\BlackCanary.Cli\BlackCanary.Cli.csproj", "{FDB2F592-F753-4C7F-B792-8BCC7E965F86}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{69387376-D12D-489D-BDA0-7349AC6B6DBE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackCanary.Core.Tests", "tests\BlackCanary.Core.Tests\BlackCanary.Core.Tests.csproj", "{66A41864-49ED-4C1B-9CAF-B59FD9FC2279}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BB15AFFD-B4DB-4545-9BCF-52D45F3E0DC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB15AFFD-B4DB-4545-9BCF-52D45F3E0DC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB15AFFD-B4DB-4545-9BCF-52D45F3E0DC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB15AFFD-B4DB-4545-9BCF-52D45F3E0DC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5E03C81-972F-4FA1-9123-DC612C85AE0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5E03C81-972F-4FA1-9123-DC612C85AE0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5E03C81-972F-4FA1-9123-DC612C85AE0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5E03C81-972F-4FA1-9123-DC612C85AE0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDB2F592-F753-4C7F-B792-8BCC7E965F86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDB2F592-F753-4C7F-B792-8BCC7E965F86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDB2F592-F753-4C7F-B792-8BCC7E965F86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDB2F592-F753-4C7F-B792-8BCC7E965F86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66A41864-49ED-4C1B-9CAF-B59FD9FC2279}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66A41864-49ED-4C1B-9CAF-B59FD9FC2279}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66A41864-49ED-4C1B-9CAF-B59FD9FC2279}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66A41864-49ED-4C1B-9CAF-B59FD9FC2279}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BB15AFFD-B4DB-4545-9BCF-52D45F3E0DC5} = {04F2622D-1371-4136-91C4-265898C56D34}
+		{A5E03C81-972F-4FA1-9123-DC612C85AE0D} = {04F2622D-1371-4136-91C4-265898C56D34}
+		{FDB2F592-F753-4C7F-B792-8BCC7E965F86} = {04F2622D-1371-4136-91C4-265898C56D34}
+		{66A41864-49ED-4C1B-9CAF-B59FD9FC2279} = {69387376-D12D-489D-BDA0-7349AC6B6DBE}
+	EndGlobalSection
+EndGlobal
