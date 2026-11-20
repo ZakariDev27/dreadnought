@@ -1,0 +1,10 @@
+{
+  "rolloutId": "r-2026-11-macos-core-3",
+  "ring": "canary",
+  "status": "unhealthy",
+  "reasons": [
+    "failure rate 18.0% in treated vs 2.0% in control (p=0.0004)"
+  ],
+  "sampleSize": 50,
+  "evaluatedAt": "2026-11-20T16:00:00+00:00"
+}
