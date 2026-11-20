@@ -1,0 +1,10 @@
+{
+  "name": "macos-browser",
+  "version": 1,
+  "platform": "macOS",
+  "tiers": ["standard", "restricted", "research"],
+  "settings": [
+    { "key": "browser.extensionAllowlist", "value": "enforced", "severity": "high" },
+    { "key": "browser.autoUpdate", "value": "true", "severity": "medium" }
+  ]
+}

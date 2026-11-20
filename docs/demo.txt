@@ -1,0 +1,66 @@
+Black Canary — fleet configuration as code, with rollouts that have to earn their way
+
+━━ 1. Devices check in; drift is scored against config-as-code ━━━━━━━
+  ▸ 24 macOS devices reported their settings
+    ✓ 20/24 compliant, mean score 96.7%
+      hotspot  firewall.enabled             high      3 device(s)
+      hotspot  disk.encryption              critical  1 device(s)
+      hotspot  screenlock.timeoutSeconds    medium    1 device(s)
+  ▸ worst device: mac-011 at 55% (severity-weighted)
+      [critical] disk.encryption: expected 'enabled', not reported
+      [high    ] firewall.enabled: expected 'true', 'false'
+
+━━ 2. Guarded remediation: the planner proposes, policy decides ━━━━━━
+    ✗ enable_disk_encryption   needs_review  disk.encryption is not reported, expected 'enabled'
+    ✓ apply_setting            allowed       firewall.enabled is 'false', expected 'true'
+  ▸ execute without a human approver
+      step 0  enable_disk_encryption   skipped  awaiting human approval
+      step 1  apply_setting            done     
+  ▸ grace signs off the sensitive step
+    ✓ enable_disk_encryption done — approved by grace
+
+━━ 3. A sensitive change earns its way across the fleet ━━━━━━━━━━━━━━
+  ▸ ada opens r-macos-core-3 for macos-core@3 — sensitive, so two approvals required
+    ✗ ada tries to start it: Cannot start a rollout that is AwaitingApproval.
+    ✗ ada (author-only key) tries to approve: This operation requires 'rollout:approve'.
+    ✗ grace approves twice: 'grace' has already approved this rollout.
+    ✓ approved by grace, linus
+  ▸ started in ring 'canary' (5% of fleet)
+    ✗ advance with no evidence: Ring 'canary' has no healthy verdict yet.
+    ✓ gate: healthy (n=80)
+    ✗ advance immediately: Ring 'canary' must soak for 00:00:03; only 00:00:00.0202633 has elapsed.
+    ✓ advanced → ring 'broad'
+    ✓ gate: healthy (n=80)
+    ✓ advanced → ring 'fleet'
+    ✓ gate: healthy (n=80)
+    ✓ advanced completed
+
+━━ 4. A bad change is stopped by its own canary ━━━━━━━━━━━━━━━━━━━━━━
+  ▸ r-macos-browser-1 approved (standard change, one reviewer) and live in 'canary'
+  ▸ this build crashes on ~1 in 4 machines and slows boot by a third
+    ✗ gate: unhealthy (n=80)
+        failure rate 26.2% exceeds the 10% ceiling
+        failure rate 26.2% in treated vs 2.1% in control (p<0.0001)
+        median boot time 31.1s vs 23.5s in control (+32%, p<0.0001)
+    ✓ rolled back automatically — 95% of the fleet never saw it
+    ✗ ada tries to push on anyway: Cannot advance a rollout that is RolledBack.
+
+━━ 5. Every action is on a tamper-evident record ━━━━━━━━━━━━━━━━━━━━━
+     1  e3d68af647  ada           rollout.created      r-macos-core-3     macos-core@3; sensitive=True; approvals requ
+     2  1ca5c3e6d9  grace         rollout.approved     r-macos-core-3     1/2 approvals
+     3  32d7ad90b9  linus         rollout.approved     r-macos-core-3     2/2 approvals
+     4  03129f40aa  ada           rollout.started      r-macos-core-3     ring=canary
+     5  fc831e51d2  analytics     rollout.verdict      r-macos-core-3     ring=canary; status=Healthy; n=80
+     6  65267f2a03  ada           rollout.advanced     r-macos-core-3     ring=broad
+     7  dd79329646  analytics     rollout.verdict      r-macos-core-3     ring=broad; status=Healthy; n=80
+     8  4026209245  ada           rollout.advanced     r-macos-core-3     ring=fleet
+     9  a33da52d4e  analytics     rollout.verdict      r-macos-core-3     ring=fleet; status=Healthy; n=80
+    10  a8af5b110e  ada           rollout.advanced     r-macos-core-3     completed
+    11  b5b2fd202f  ada           rollout.created      r-macos-browser-1  macos-browser@1; sensitive=False; approvals 
+    12  81042b8220  grace         rollout.approved     r-macos-browser-1  1/1 approvals
+    13  19ffe9b4a2  ada           rollout.started      r-macos-browser-1  ring=canary
+    14  27bbbaa516  analytics     rollout.verdict      r-macos-browser-1  ring=canary; status=Unhealthy; n=80
+    15  2c7f07f7e4  black-canary  rollout.rolled_back  r-macos-browser-1  Health gate failed in 'canary': failure rate
+    ✓ hash chain verified across 15 entries
+
+Demo complete. Every step above was asserted.

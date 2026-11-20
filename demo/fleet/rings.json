@@ -1,0 +1,9 @@
+{
+  // Same shape as fleet/rings.json with soak times shrunk to seconds, so the demo
+  // can show the soak guard refusing an early advance without anyone waiting an hour.
+  "rings": [
+    { "name": "canary", "cumulativePercent": 5, "minSoak": "00:00:03" },
+    { "name": "broad", "cumulativePercent": 50, "minSoak": "00:00:00" },
+    { "name": "fleet", "cumulativePercent": 100, "minSoak": "00:00:00" }
+  ]
+}
