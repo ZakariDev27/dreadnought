@@ -1,0 +1,11 @@
+{
+  "name": "macos-restricted",
+  "version": 1,
+  "platform": "macOS",
+  "tiers": ["restricted"],
+  "settings": [
+    { "key": "usb.massStorage", "value": "blocked", "severity": "critical", "sensitive": true },
+    { "key": "airdrop.enabled", "value": "false", "severity": "high" },
+    { "key": "remoteLogin.enabled", "value": "false", "severity": "high" }
+  ]
+}

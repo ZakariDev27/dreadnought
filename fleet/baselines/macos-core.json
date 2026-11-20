@@ -1,0 +1,13 @@
+{
+  "name": "macos-core",
+  "version": 3,
+  "platform": "macOS",
+  "tiers": ["standard", "restricted", "research"],
+  "settings": [
+    { "key": "disk.encryption", "value": "enabled", "severity": "critical", "sensitive": true },
+    { "key": "firewall.enabled", "value": "true", "severity": "high" },
+    { "key": "screenlock.timeoutSeconds", "value": "300", "severity": "medium" },
+    { "key": "os.autoUpdate", "value": "true", "severity": "high" },
+    { "key": "gatekeeper.enabled", "value": "true", "severity": "high" }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  // Cumulative share of the fleet per ring, and how long each must stay healthy
+  // before the rollout may widen.
+  "rings": [
+    { "name": "canary", "cumulativePercent": 2, "minSoak": "01:00:00" },
+    { "name": "early", "cumulativePercent": 10, "minSoak": "04:00:00" },
+    { "name": "broad", "cumulativePercent": 50, "minSoak": "12:00:00" },
+    { "name": "fleet", "cumulativePercent": 100, "minSoak": "00:00:00" }
+  ]
+}

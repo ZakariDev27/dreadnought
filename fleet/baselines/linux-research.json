@@ -1,0 +1,12 @@
+{
+  "name": "linux-research",
+  "version": 1,
+  "platform": "linux",
+  "tiers": ["research"],
+  "settings": [
+    { "key": "disk.encryption", "value": "enabled", "severity": "critical", "sensitive": true },
+    { "key": "ssh.passwordAuth", "value": "false", "severity": "high" },
+    { "key": "kernel.livepatch", "value": "true", "severity": "medium" },
+    { "key": "motd.banner", "value": "research-fleet", "severity": "low" }
+  ]
+}
